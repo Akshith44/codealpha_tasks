@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - CodeAlpha Shop</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="/">CodeAlpha<span>Shop</span></a>
+    <nav><a href="/">Home</a><a href="/cart.html">Cart <b id="cartCount">0</b></a></nav>
+  </header>
+
+  <main class="auth-wrap">
+    <form id="registerForm" class="auth-card">
+      <h1>Create Account</h1>
+      <p class="muted">Register for the CodeAlpha Shop.</p>
+      <label>Name</label>
+      <input name="name" required placeholder="Your name">
+      <label>Email</label>
+      <input name="email" type="email" required placeholder="you@example.com">
+      <label>Password</label>
+      <input name="password" type="password" required minlength="6" placeholder="Minimum 6 characters">
+      <button class="btn full" type="submit">Register</button>
+      <p id="message" class="message"></p>
+      <p>Already registered? <a href="/login.html">Login</a></p>
+    </form>
+  </main>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

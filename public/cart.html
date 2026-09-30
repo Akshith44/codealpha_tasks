@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - CodeAlpha Shop</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="/">CodeAlpha<span>Shop</span></a>
+    <nav><a href="/">Home</a><a href="/orders.html">My Orders</a><a href="/login.html" id="loginLink">Login</a><button class="link-btn hidden" id="logoutBtn">Logout</button></nav>
+  </header>
+
+  <main class="section">
+    <h1>Your Cart</h1>
+    <div id="cartItems"></div>
+    <div id="cartSummary" class="summary"></div>
+
+    <form id="checkoutForm" class="checkout hidden">
+      <h2>Checkout</h2>
+      <label>Shipping Address</label>
+      <textarea name="shippingAddress" rows="4" required placeholder="House number, street, city, state, PIN"></textarea>
+      <button class="btn" type="submit">Place Order</button>
+      <p id="checkoutMessage" class="message"></p>
+    </form>
+  </main>
+
+  <footer>CodeAlpha Full Stack Development Internship • Task 1</footer>
+  <script src="/js/cart.js"></script>
+</body>
+</html>
