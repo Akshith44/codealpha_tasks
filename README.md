@@ -1,3 +1,4 @@
+
 # CodeAlpha Task 1 - Simple E-commerce Store
 
 Full-stack project for the CodeAlpha Full Stack Development Internship.
@@ -36,3 +37,6 @@ Authentication: JWT + bcryptjs
 
 ## Important
 This demo does not process real payments. Checkout creates an order in MongoDB.
+
+# codealpha_tasks
+
