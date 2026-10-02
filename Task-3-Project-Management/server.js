@@ -1,0 +1,5 @@
+const express=require("express"),mongoose=require("mongoose"),cors=require("cors"),dotenv=require("dotenv"),path=require("path");dotenv.config();const app=express();app.use(cors());app.use(express.json());app.use(express.static(path.join(__dirname,"public")));
+app.use("/api/auth",require("./routes/auth"));app.use("/api/users",require("./routes/users"));app.use("/api/projects",require("./routes/projects"));app.use("/api/tasks",require("./routes/tasks"));app.use("/api/comments",require("./routes/comments"));
+app.get("*splat",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
+const PORT=process.env.PORT||5002,URI=process.env.MONGODB_URI||"mongodb://127.0.0.1:27017/codealpha_project_management";
+mongoose.connect(URI).then(()=>{console.log("MongoDB connected");app.listen(PORT,()=>console.log(`Server running at http://localhost:${PORT}`))}).catch(e=>{console.error("MongoDB connection failed:",e.message);process.exit(1)});

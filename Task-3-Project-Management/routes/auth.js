@@ -1,0 +1,8 @@
+const express=require("express"),bcrypt=require("bcryptjs"),jwt=require("jsonwebtoken"),User=require("../models/User");
+const r=express.Router(); const token=u=>jwt.sign({id:u._id.toString(),username:u.username,name:u.name},process.env.JWT_SECRET,{expiresIn:"7d"});
+r.post("/register",async(req,res)=>{try{const{name,username,email,password}=req.body;if(!name||!username||!email||!password)return res.status(400).json({message:"All fields are required."});
+if(password.length<6)return res.status(400).json({message:"Password must be at least 6 characters."});
+if(await User.findOne({$or:[{email:email.toLowerCase()},{username:username.toLowerCase()}]}))return res.status(409).json({message:"Email or username already exists."});
+const u=await User.create({name,username,email,password:await bcrypt.hash(password,10)});res.status(201).json({token:token(u),user:{id:u._id,name:u.name,username:u.username,email:u.email}})}catch(e){res.status(500).json({message:"Registration failed.",error:e.message})}});
+r.post("/login",async(req,res)=>{try{const u=await User.findOne({email:(req.body.email||"").toLowerCase()});if(!u||!(await bcrypt.compare(req.body.password||"",u.password)))return res.status(401).json({message:"Invalid email or password."});
+res.json({token:token(u),user:{id:u._id,name:u.name,username:u.username,email:u.email}})}catch(e){res.status(500).json({message:"Login failed.",error:e.message})}});module.exports=r;

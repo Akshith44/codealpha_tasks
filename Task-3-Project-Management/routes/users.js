@@ -1,0 +1,3 @@
+const express=require("express"),auth=require("../middleware/auth"),User=require("../models/User");const r=express.Router();
+r.get("/search",auth,async(req,res)=>{const q=(req.query.q||"").trim();if(!q)return res.json([]);res.json(await User.find({$or:[{name:{$regex:q,$options:"i"}},{username:{$regex:q,$options:"i"}},{email:{$regex:q,$options:"i"}}]}).select("name username email").limit(10))});
+r.get("/me",auth,async(req,res)=>res.json(await User.findById(req.user.id).select("-password")));module.exports=r;
